@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    cloudfoundry.org/fqdn: test.cf.uli.istio.shoot.canary.k8s-hana.ondemand.com
+  labels:
+    cloudfoundry.org/route-bulk-sync: "true"
+  name: vs-d6c86d5b026fa583287f5b87f97e9a0d3d4e7662145d0f5776a1d7959a65034b
+  namespace: cf-workloads
+spec:
+  gateways:
+  - cf-system/istio-ingressgateway
+  hosts:
+  - test.cf.uli.istio.shoot.canary.k8s-hana.ondemand.com
+  http:
+  - route:
+    - destination:
+        host: s-e8e21e4f-9b45-4ead-bf8b-f7b4cd641dfa
+      headers:
+        request:
+          set:
+            CF-App-Id: 2e830cb8-edbe-4daa-9ed7-948e7de12809
+            CF-App-Process-Type: web
+            CF-Organization-Id: 4dc6364b-3ad2-4882-bed9-71ccba078f06
+            CF-Space-Id: 82ec565f-5236-4a20-bdb0-f095d616253a
+        response: {}

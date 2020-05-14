@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  generation: 1
+  name: istio-ingressgateway
+  namespace: cf-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - '*'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+  - hosts:
+    - '*.cf.uli.istio.shoot.canary.k8s-hana.ondemand.com'
+    - '*.cf.uli.istio.shoot.canary.k8s-hana.ondemand.com'
+    port:
+      name: https-system
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: cf-4-k8s-ingressgateway-certs
+      mode: SIMPLE

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloudfoundry.org/route-fqdn: test.cf.uli.istio.shoot.canary.k8s-hana.ondemand.com
+  name: s-e8e21e4f-9b45-4ead-bf8b-f7b4cd641dfa
+  namespace: cf-workloads
+spec:
+  clusterIP: 100.66.137.121
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    cloudfoundry.org/app_guid: 2e830cb8-edbe-4daa-9ed7-948e7de12809
+    cloudfoundry.org/process_type: web
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
