@@ -1,0 +1,40 @@
+apiVersion: v1
+items:
+- apiVersion: apps.cloudfoundry.org/v1alpha1
+  kind: RouteBulkSync
+  metadata:
+    annotations:
+      kapp.k14s.io/change-rule.istio-sidecar-injector: upsert after upserting cf-for-k8s.cloudfoundry.org/istio-sidecar-injector
+      kapp.k14s.io/identity: v1;cf-workloads/apps.cloudfoundry.org/RouteBulkSync/route-bulk-sync;apps.cloudfoundry.org/v1alpha1
+      kapp.k14s.io/original: '{"apiVersion":"apps.cloudfoundry.org/v1alpha1","kind":"RouteBulkSync","metadata":{"annotations":{"kapp.k14s.io/change-rule.istio-sidecar-injector":"upsert
+        after upserting cf-for-k8s.cloudfoundry.org/istio-sidecar-injector"},"labels":{"kapp.k14s.io/app":"1589866757362046570","kapp.k14s.io/association":"v1.b390afcdb9a327cf2015c669b22131f2","shalm.wonderix.github.com/app":"cf-for-k8s","shalm.wonderix.github.com/version":"0.0.0"},"name":"route-bulk-sync","namespace":"cf-workloads"},"spec":{"selector":{"matchLabels":{"cloudfoundry.org/route-bulk-sync":"true"}},"template":{"metadata":{"labels":{"cloudfoundry.org/route-bulk-sync":"true"}}}}}'
+      kapp.k14s.io/original-diff: |
+        []
+      kapp.k14s.io/original-diff-full: ""
+      kapp.k14s.io/original-diff-md5: 58e0494c51d30eb3494f7c9198986bb9
+    creationTimestamp: "2020-05-19T05:39:41Z"
+    generation: 1
+    labels:
+      kapp.k14s.io/app: "1589866757362046570"
+      kapp.k14s.io/association: v1.b390afcdb9a327cf2015c669b22131f2
+      shalm.wonderix.github.com/app: cf-for-k8s
+      shalm.wonderix.github.com/version: 0.0.0
+    name: route-bulk-sync
+    namespace: cf-workloads
+    resourceVersion: "3491"
+    selfLink: /apis/apps.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routebulksyncs/route-bulk-sync
+    uid: 9eac9fdb-2e5a-4fc3-8fcb-d01dd6a1d21c
+  spec:
+    selector:
+      matchLabels:
+        cloudfoundry.org/route-bulk-sync: "true"
+    template:
+      metadata:
+        labels:
+          cloudfoundry.org/route-bulk-sync: "true"
+  status:
+    observedGeneration: 1
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
