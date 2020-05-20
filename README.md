@@ -86,6 +86,22 @@ Each `VirtualService` refers to a kubernetes service. [`DestinationRules`](https
 ## Envoy
 
 - The envoyproxy documentation contains a subpage where the basic terminology (listener, upstream, downstream, cluster, ...) of envoy is explained: https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/intro/terminology
+
+![](doc/envoy.png)
+
+*Note*: In the istio case other envoy proxy runs on the same node (as sidecar container) as the app on the upstream host.
+
+Envoy Ingress [config](examples/initial/ingress.json) contains:
+- clusters
+  - static clusters (for statistics e.g. prometheus)
+  - cluster
+    - service_name
+    - circuit breaking (Envoy enforces these limits at network level) 
+    - transport_socket (for tls context)
+- listeners
+- routes 
+- secrets
+
 - The istio documentation has some information on how-to retrieve the current configuration of the sidecar and ingress envoys in a cluster using the `istioctl` https://istio.io/docs/ops/diagnostic-tools/proxy-cmd/
 
 
