@@ -40,6 +40,13 @@ The envoyproxy documentation contains a subpage where the basic terminology (lis
 
 ![](doc/envoy.png)
 
+| Artefact                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Downstream Host | A client connecting to Envoy in order to reach a backend app / service|
+| Upstream Cluster | A backend app / service that requests are forwarded to by Envoy using load balancing|
+| Listener | An frontend exposed by Envoy that allows downstream hosts to connect. Think 0.0.0.0:443|
+| Filter | Pluggable logic that allows traffic manipulation and routing decisions to upstream clusters|
+
 ### Configuration
 Envoy Ingress [config](examples/initial/ingress.json) contains:
 - clusters
@@ -47,10 +54,10 @@ Envoy Ingress [config](examples/initial/ingress.json) contains:
   - cluster
     - type
     - service_name
-    - circuit breaking (Envoy enforces these limits at network level) 
+    - circuit breaking (Envoy enforces these limits at network level)
     - transport_socket (for tls context)
 - listeners
-- routes 
+- routes
 - secrets
 
 The istio documentation has some information on how-to retrieve the current configuration of the sidecar and ingress envoys in a cluster using the `istioctl` https://istio.io/docs/ops/diagnostic-tools/proxy-cmd/
@@ -58,6 +65,18 @@ The istio documentation has some information on how-to retrieve the current conf
 In the istio case other envoy proxy runs on the same node (as sidecar container) as the app on the upstream host.
 
 ![](doc/Envoy_flow.png)
+
+### Istiod architecture changes
+Current (v1.4) implementation features 3 components:
+- pilot
+- mixer
+- citadel
+
+https://archive.istio.io/v1.4/docs/concepts/security/architecture.svg
+
+The upcoming architecture will merge them into a single istiod component:
+
+https://istio.io/docs/concepts/security/arch-sec.svg
 
 ## Open topics
 
