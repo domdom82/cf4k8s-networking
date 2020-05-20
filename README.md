@@ -57,7 +57,7 @@ The istio documentation has some information on how-to retrieve the current conf
 
 In the istio case other envoy proxy runs on the same node (as sidecar container) as the app on the upstream host.
 
-![](doc/envoy_flow.png)
+![](doc/Envoy_flow.png)
 
 ## Open topics
 
