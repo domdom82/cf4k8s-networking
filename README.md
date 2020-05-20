@@ -44,7 +44,7 @@ The envoyproxy documentation contains a subpage where the basic terminology (lis
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Downstream Host | A client connecting to Envoy in order to reach a backend app / service|
 | Upstream Cluster | A backend app / service that requests are forwarded to by Envoy using load balancing|
-| Listener | An frontend exposed by Envoy that allows downstream hosts to connect. Think 0.0.0.0:443|
+| Listener | A frontend exposed by Envoy that allows downstream hosts to connect. Think 0.0.0.0:443|
 | Filter | Pluggable logic that allows traffic manipulation and routing decisions to upstream clusters|
 
 ### Configuration
