@@ -6,9 +6,6 @@
 # - after-push-b: contains the state after pushing another app
 #
 # The state are the envoy config of the app-sidecars and the istio-ingressgateway and all CF and Istio objects.
-#
-# Tip: Then comparing envoy dumps it helps to sort the json before comparing, e.g.:
-# diff -u <(jq -S . after-push-a/ingress.json) <(jq -S . after-push-b/ingress.json)
 
 set -euo pipefail
 
@@ -45,7 +42,7 @@ function dump_envoy() {
     kubectl port-forward -n "$NAMESPACE" "$NAME" 15000:15000 &
     PID=$!
     sleep 1
-    curl -so "$TARGET" http://localhost:15000/config_dump
+    curl -s http://localhost:15000/config_dump | jq -S . > "$TARGET"
     kill $PID
 }
 
