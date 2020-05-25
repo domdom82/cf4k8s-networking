@@ -47,10 +47,10 @@ Envoy Ingress [config](examples/initial/ingress.json) contains:
   - cluster
     - type
     - service_name
-    - circuit breaking (Envoy enforces these limits at network level) 
+    - circuit breaking (Envoy enforces these limits at network level)
     - transport_socket (for tls context)
 - listeners
-- routes 
+- routes
 - secrets
 
 The istio documentation has some information on how-to retrieve the current configuration of the sidecar and ingress envoys in a cluster using the `istioctl` https://istio.io/docs/ops/diagnostic-tools/proxy-cmd/
@@ -59,9 +59,43 @@ In the istio case other envoy proxy runs on the same node (as sidecar container)
 
 ![](doc/Envoy_flow.png)
 
-## Open topics
+## CloudFoundry, Istio and Envoy Config Diffs
+This section describes what happens during common cf push and map-route use-cases.
+For this purpose, a single app `test-app-a` is pushed, then another app `test-app-b`.
+Finally, an additional route is mapped to `test-app-b` and the effects on CF, istio and envoy layers are documented.
 
-* Looking at what the Envoy's (sidecar and gateway) configuration looks like
+### Push Single App
+CF:
+
+1. A new CR of kind "Route" gets created: `/apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/<UUID>`
+1. The spec contains the new route information:
+```
+spec:
+  destinations:
+  - app:
+      guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+      process:
+        type: web
+    guid: 7afcae7d-d2ff-4310-9e74-2ec9ca4cca19
+    port: 8080
+    selector:
+      matchLabels:
+        cloudfoundry.org/app_guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+        cloudfoundry.org/process_type: web
+  domain:
+    internal: false
+    name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+  host: test-app-a
+  path: ""
+  url: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+```
+
+- Istio
+- Envoy
+
+### Push Another App
+### Map Additional Route
+
 
 ### Debugging
 
