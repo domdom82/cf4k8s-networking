@@ -94,7 +94,7 @@ Istio:
 
 1. A new VirtualService gets created: `/apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-<unique name>`
 1. The spec contains the public DNS name of the app, the service name to which traffic will be routed as well as HTTP headers to set. 
-```
+```yaml
  spec:
     gateways:
     - cf-system/istio-ingressgateway
@@ -114,9 +114,135 @@ Istio:
           response: {}
 ```
 
-Envoy:
+Ingress Envoy:
 
 1. Envoy will pick up ingress spec from istio to map a host name to a service name
+1. A new cluster entry is added to the ingress envoy config. (Don't confuse cluster with kubernetes cluster - it's an envoy backend)
+   The cluster entry contains info needed for the ingress envoy to open a TLS session with the app sidecar envoy
+```json
+            "name": "outbound|8080||s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local",
+            "transport_socket_matches": [
+              {
+                "match": {
+                  "tlsMode": "istio"
+                },
+                "name": "tlsMode-istio",
+                "transport_socket": {
+                  "name": "tls",
+                  "typed_config": {
+                    "@type": "type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext",
+                    "common_tls_context": {
+                      "alpn_protocols": [
+                        "istio"
+                      ],
+                      "tls_certificates": [
+                        {
+                          "certificate_chain": {
+                            "filename": "/etc/certs/cert-chain.pem"
+                          },
+                          "private_key": {
+                            "filename": "/etc/certs/key.pem"
+                          }
+                        }
+                      ],
+                      "validation_context": {
+                        "trusted_ca": {
+                          "filename": "/etc/certs/root-cert.pem"
+                        },
+                        "verify_subject_alt_name": [
+                          "spiffe://cluster.local/ns/cf-workloads/sa/eirini-privileged"
+                        ]
+                      }
+                    },
+                    "sni": "outbound_.8080_._.s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local"
+                  }
+                }
+              },
+```
+1. A listener is added for the mapped app host name for both http and https variants.
+   The listener translates the virtual service configuration into envoy configuration. 
+   A route entry is added so that the ingress envoy knows how a host name is mapped to a service name.
+   Request headers are added that will be forwarded to the cf app.
+```json
+              {
+                "domains": [
+                  "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+                  "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80"
+                ],
+                "name": "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
+                "routes": [
+                  {
+                    "decorator": {
+                      "operation": "s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local:8080/*"
+                    },
+                    "match": {
+                      "prefix": "/"
+                    },
+                    "metadata": {
+                      "filter_metadata": {
+                        "istio": {
+                          "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab"
+                        }
+                      }
+                    },
+                    "request_headers_to_add": [
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-App-Id",
+                          "value": "673ab4f3-101c-41a6-b1e3-aca13da1dd45"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-App-Process-Type",
+                          "value": "web"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-Organization-Id",
+                          "value": "e9aab7d8-298f-4aa7-9a77-46a721a36197"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-Space-Id",
+                          "value": "e7bb5fa9-9496-4179-b244-806b268a8c64"
+                        }
+                      }
+                    ],
+                    "route": {
+                      "cluster": "outbound|8080||s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local",
+                      "max_grpc_timeout": "0s",
+                      "retry_policy": {
+                        "host_selection_retry_max_attempts": "5",
+                        "num_retries": 2,
+                        "retriable_status_codes": [
+                          503
+                        ],
+                        "retry_host_predicate": [
+                          {
+                            "name": "envoy.retry_host_predicates.previous_hosts"
+                          }
+                        ],
+                        "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes"
+                      },
+                      "timeout": "0s"
+                    },
+                    (...)
+                  }
+                ]
+              },
+```
+
+App Sidecar Envoy
+
+todo: how traffic is forwarded from sidecar to app container
+
 
 ### Push Another App
 ### Map Additional Route
