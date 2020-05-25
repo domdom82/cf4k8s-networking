@@ -1910,6 +1910,45 @@ items:
   kind: VirtualService
   metadata:
     annotations:
+      cloudfoundry.org/fqdn: test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+      metacontroller.k8s.io/last-applied-configuration: '{"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"cloudfoundry.org/fqdn":"test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"},"creationTimestamp":null,"labels":{"cloudfoundry.org/route-bulk-sync":"true"},"name":"vs-0c7576448ea581fbaf54400e91ee52728618f2869cea4280b28c70be579762f2"},"spec":{"gateways":["cf-system/istio-ingressgateway"],"hosts":["test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"],"http":[{"route":[{"destination":{"host":"s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"},"headers":{"request":{"set":{"CF-App-Id":"79611488-3f30-4396-99d6-cb6393f02245","CF-App-Process-Type":"web","CF-Organization-Id":"06a6a55e-ea35-440a-8853-3f44becb82be","CF-Space-Id":"d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"}},"response":{}}}]}]}}'
+    creationTimestamp: "2020-05-25T09:02:11Z"
+    generation: 1
+    labels:
+      cloudfoundry.org/route-bulk-sync: "true"
+    name: vs-0c7576448ea581fbaf54400e91ee52728618f2869cea4280b28c70be579762f2
+    namespace: cf-workloads
+    ownerReferences:
+    - apiVersion: apps.cloudfoundry.org/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: RouteBulkSync
+      name: route-bulk-sync
+      uid: a6b890f7-3c80-4a81-9ea5-53a5f8c6c8fa
+    resourceVersion: "44767"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-0c7576448ea581fbaf54400e91ee52728618f2869cea4280b28c70be579762f2
+    uid: 2ec995e8-1d57-499e-bb2b-ce441b736001
+  spec:
+    gateways:
+    - cf-system/istio-ingressgateway
+    hosts:
+    - test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    http:
+    - route:
+      - destination:
+          host: s-ce8514d9-a8f6-4bcb-b081-ea77a0649241
+        headers:
+          request:
+            set:
+              CF-App-Id: 79611488-3f30-4396-99d6-cb6393f02245
+              CF-App-Process-Type: web
+              CF-Organization-Id: 06a6a55e-ea35-440a-8853-3f44becb82be
+              CF-Space-Id: d2cf7627-d0d1-4652-8926-b8a5fc47ac1d
+          response: {}
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
       cloudfoundry.org/fqdn: test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
       metacontroller.k8s.io/last-applied-configuration: '{"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"cloudfoundry.org/fqdn":"test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"},"creationTimestamp":null,"labels":{"cloudfoundry.org/route-bulk-sync":"true"},"name":"vs-31f77c17e1520020de2a0578f224e8f1e4966e0d45e3e890632cf4dbd7bf29fc"},"spec":{"gateways":["cf-system/istio-ingressgateway"],"hosts":["test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"],"http":[{"route":[{"destination":{"host":"s-080e9d9e-6838-4107-8b5b-fd833045b906"},"headers":{"request":{"set":{"CF-App-Id":"ce695923-6d47-4eac-8b4b-f784949e753a","CF-App-Process-Type":"web","CF-Organization-Id":"f46c3b00-b5ee-4fa0-8f94-53891fbbb95c","CF-Space-Id":"e50303c3-dfcb-495b-888e-5b5241f9cb78"}},"response":{}}}]}]}}'
     creationTimestamp: "2020-05-25T07:01:14Z"
@@ -1944,6 +1983,84 @@ items:
               CF-App-Process-Type: web
               CF-Organization-Id: f46c3b00-b5ee-4fa0-8f94-53891fbbb95c
               CF-Space-Id: e50303c3-dfcb-495b-888e-5b5241f9cb78
+          response: {}
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      cloudfoundry.org/fqdn: test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+      metacontroller.k8s.io/last-applied-configuration: '{"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"cloudfoundry.org/fqdn":"test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"},"creationTimestamp":null,"labels":{"cloudfoundry.org/route-bulk-sync":"true"},"name":"vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab"},"spec":{"gateways":["cf-system/istio-ingressgateway"],"hosts":["test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"],"http":[{"route":[{"destination":{"host":"s-35816fe1-db6f-4981-a659-347b7005ee3b"},"headers":{"request":{"set":{"CF-App-Id":"79611488-3f30-4396-99d6-cb6393f02245","CF-App-Process-Type":"web","CF-Organization-Id":"06a6a55e-ea35-440a-8853-3f44becb82be","CF-Space-Id":"d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"}},"response":{}}}]}]}}'
+    creationTimestamp: "2020-05-25T09:01:13Z"
+    generation: 1
+    labels:
+      cloudfoundry.org/route-bulk-sync: "true"
+    name: vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab
+    namespace: cf-workloads
+    ownerReferences:
+    - apiVersion: apps.cloudfoundry.org/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: RouteBulkSync
+      name: route-bulk-sync
+      uid: a6b890f7-3c80-4a81-9ea5-53a5f8c6c8fa
+    resourceVersion: "44515"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab
+    uid: d3396c54-90ff-4764-94ae-37fe89f5cc95
+  spec:
+    gateways:
+    - cf-system/istio-ingressgateway
+    hosts:
+    - test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    http:
+    - route:
+      - destination:
+          host: s-35816fe1-db6f-4981-a659-347b7005ee3b
+        headers:
+          request:
+            set:
+              CF-App-Id: 79611488-3f30-4396-99d6-cb6393f02245
+              CF-App-Process-Type: web
+              CF-Organization-Id: 06a6a55e-ea35-440a-8853-3f44becb82be
+              CF-Space-Id: d2cf7627-d0d1-4652-8926-b8a5fc47ac1d
+          response: {}
+- apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    annotations:
+      cloudfoundry.org/fqdn: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+      metacontroller.k8s.io/last-applied-configuration: '{"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{"cloudfoundry.org/fqdn":"test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"},"creationTimestamp":null,"labels":{"cloudfoundry.org/route-bulk-sync":"true"},"name":"vs-baa9a33911929c11530b667b4a09c46c2c7e73380ab57f88ce66ff0b727881c1"},"spec":{"gateways":["cf-system/istio-ingressgateway"],"hosts":["test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com"],"http":[{"route":[{"destination":{"host":"s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"},"headers":{"request":{"set":{"CF-App-Id":"26a01099-5e3b-463d-8885-97adb4e0ad6c","CF-App-Process-Type":"web","CF-Organization-Id":"2eccdf0c-ffad-419c-8718-a6569b6104ed","CF-Space-Id":"2032c518-0914-4c05-bf6e-98d8dd6ffb5a"}},"response":{}}}]}]}}'
+    creationTimestamp: "2020-05-25T09:00:12Z"
+    generation: 1
+    labels:
+      cloudfoundry.org/route-bulk-sync: "true"
+    name: vs-baa9a33911929c11530b667b4a09c46c2c7e73380ab57f88ce66ff0b727881c1
+    namespace: cf-workloads
+    ownerReferences:
+    - apiVersion: apps.cloudfoundry.org/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: RouteBulkSync
+      name: route-bulk-sync
+      uid: a6b890f7-3c80-4a81-9ea5-53a5f8c6c8fa
+    resourceVersion: "44264"
+    selfLink: /apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-baa9a33911929c11530b667b4a09c46c2c7e73380ab57f88ce66ff0b727881c1
+    uid: 8023537a-11ef-49a2-ba1b-b88893f285f5
+  spec:
+    gateways:
+    - cf-system/istio-ingressgateway
+    hosts:
+    - test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    http:
+    - route:
+      - destination:
+          host: s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d
+        headers:
+          request:
+            set:
+              CF-App-Id: 26a01099-5e3b-463d-8885-97adb4e0ad6c
+              CF-App-Process-Type: web
+              CF-Organization-Id: 2eccdf0c-ffad-419c-8718-a6569b6104ed
+              CF-Space-Id: 2032c518-0914-4c05-bf6e-98d8dd6ffb5a
           response: {}
 - apiVersion: security.istio.io/v1beta1
   kind: AuthorizationPolicy

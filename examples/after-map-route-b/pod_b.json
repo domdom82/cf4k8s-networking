@@ -7,6 +7,10 @@
      "id": "sidecar~100.96.2.17~test-app-b-test-25a976ad95-0.cf-workloads~cf-workloads.svc.cluster.local",
      "cluster": "test-app-b-test-25a976ad95.cf-workloads",
      "metadata": {
+      "cloudfoundry.org/rootfs-version": "v75.0.0",
+      "cloudfoundry.org/version": "fcb4900c-5d96-437e-bc76-14bb03b34e9c",
+      "POD_NAME": "test-app-b-test-25a976ad95-0",
+      "statefulset.kubernetes.io/pod-name": "test-app-b-test-25a976ad95-0",
       "cloudfoundry.org/org_name": "test-b",
       "cloudfoundry.org/original_request": "{\"guid\":\"79611488-3f30-4396-99d6-cb6393f02245\",\"version\":\"fcb4900c-5d96-437e-bc76-14bb03b34e9c\",\"process_guid\":\"79611488-3f30-4396-99d6-cb6393f02245-fcb4900c-5d96-437e-bc76-14bb03b34e9c\",\"process_type\":\"web\",\"app_guid\":\"79611488-3f30-4396-99d6-cb6393f02245\",\"app_name\":\"test-app-b\",\"space_guid\":\"d2cf7627-d0d1-4652-8926-b8a5fc47ac1d\",\"space_name\":\"test\",\"organization_guid\":\"06a6a55e-ea35-440a-8853-3f44becb82be\",\"organization_name\":\"test-b\",\"environment\":{\"VCAP_APPLICATION\":\"{\\\"cf_api\\\":\\\"https://api.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com\\\",\\\"limits\\\":{\\\"fds\\\":16384,\\\"mem\\\":1024,\\\"disk\\\":1024},\\\"application_name\\\":\\\"test-app-b\\\",\\\"application_uris\\\":[\\\"test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com\\\"],\\\"name\\\":\\\"test-app-b\\\",\\\"space_name\\\":\\\"test\\\",\\\"space_id\\\":\\\"d2cf7627-d0d1-4652-8926-b8a5fc47ac1d\\\",\\\"organization_id\\\":\\\"06a6a55e-ea35-440a-8853-3f44becb82be\\\",\\\"organization_name\\\":\\\"test-b\\\",\\\"uris\\\":[\\\"test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com\\\"],\\\"process_id\\\":\\\"79611488-3f30-4396-99d6-cb6393f02245\\\",\\\"process_type\\\":\\\"web\\\",\\\"application_id\\\":\\\"79611488-3f30-4396-99d6-cb6393f02245\\\",\\\"version\\\":\\\"fcb4900c-5d96-437e-bc76-14bb03b34e9c\\\",\\\"application_version\\\":\\\"fcb4900c-5d96-437e-bc76-14bb03b34e9c\\\"}\",\"MEMORY_LIMIT\":\"1024m\",\"VCAP_SERVICES\":\"{}\",\"PORT\":\"8080\",\"VCAP_APP_PORT\":\"8080\",\"VCAP_APP_HOST\":\"0.0.0.0\"},\"egress_rules\":[{\"protocol\":\"all\",\"destinations\":[\"0.0.0.0-9.255.255.255\"],\"annotations\":[\"security_group_id:a6813dc7-9641-45cd-af6f-0f304f61eff2\"]},{\"protocol\":\"all\",\"destinations\":[\"11.0.0.0-169.253.255.255\"],\"annotations\":[\"security_group_id:a6813dc7-9641-45cd-af6f-0f304f61eff2\"]},{\"protocol\":\"all\",\"destinations\":[\"169.255.0.0-172.15.255.255\"],\"annotations\":[\"security_group_id:a6813dc7-9641-45cd-af6f-0f304f61eff2\"]},{\"protocol\":\"all\",\"destinations\":[\"172.32.0.0-192.167.255.255\"],\"annotations\":[\"security_group_id:a6813dc7-9641-45cd-af6f-0f304f61eff2\"]},{\"protocol\":\"all\",\"destinations\":[\"192.169.0.0-255.255.255.255\"],\"annotations\":[\"security_group_id:a6813dc7-9641-45cd-af6f-0f304f61eff2\"]},{\"protocol\":\"tcp\",\"destinations\":[\"0.0.0.0/0\"],\"ports\":[53],\"annotations\":[\"security_group_id:1bc0184e-ce7a-458b-9769-340a30788cc8\"]},{\"protocol\":\"udp\",\"destinations\":[\"0.0.0.0/0\"],\"ports\":[53],\"annotations\":[\"security_group_id:1bc0184e-ce7a-458b-9769-340a30788cc8\"]}],\"placement_tags\":[],\"instances\":1,\"memory_mb\":1024,\"disk_mb\":1024,\"cpu_weight\":12,\"health_check_type\":\"port\",\"health_check_http_endpoint\":null,\"health_check_timeout_ms\":0,\"start_timeout_ms\":60000,\"last_updated\":\"1590397278.2893171\",\"volume_mounts\":[],\"ports\":[8080],\"routes\":{\"cf-router\":[{\"hostname\":\"test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com\",\"port\":8080}]},\"lifecycle\":{\"docker_lifecycle\":{\"command\":[],\"image\":\"gcr.io/sap-se-gcp-istio-dev/cf-workloads/79611488-3f30-4396-99d6-cb6393f02245@sha256:10e4a9c5fffc499f06e23dd905745d97b4e69e178f25a83cd665d46450f323e6\",\"registry_username\":null,\"registry_password\":null}},\"user_defined_annotations\":{}}",
       "ISTIO_PROXY_SHA": "istio-proxy:2369b2f31802ab74d942462ed21a00e3a38de2c5",
@@ -32,14 +36,14 @@
       "cloudfoundry.org/guid": "79611488-3f30-4396-99d6-cb6393f02245",
       "CLUSTER_ID": "Kubernetes",
       "LABELS": {
+       "cloudfoundry.org/process_type": "web",
+       "cloudfoundry.org/rootfs-version": "v75.0.0",
        "cloudfoundry.org/app_guid": "79611488-3f30-4396-99d6-cb6393f02245",
        "cloudfoundry.org/source_type": "APP",
        "cloudfoundry.org/version": "fcb4900c-5d96-437e-bc76-14bb03b34e9c",
        "statefulset.kubernetes.io/pod-name": "test-app-b-test-25a976ad95-0",
        "cloudfoundry.org/guid": "79611488-3f30-4396-99d6-cb6393f02245",
-       "controller-revision-hash": "test-app-b-test-25a976ad95-5797985847",
-       "cloudfoundry.org/process_type": "web",
-       "cloudfoundry.org/rootfs-version": "v75.0.0"
+       "controller-revision-hash": "test-app-b-test-25a976ad95-5797985847"
       },
       "NAME": "test-app-b-test-25a976ad95-0",
       "cloudfoundry.org/process_guid": "79611488-3f30-4396-99d6-cb6393f02245-fcb4900c-5d96-437e-bc76-14bb03b34e9c",
@@ -49,11 +53,7 @@
       "CONFIG_NAMESPACE": "cf-workloads",
       "WORKLOAD_NAME": "test-app-b-test-25a976ad95",
       "cloudfoundry.org/org_guid": "06a6a55e-ea35-440a-8853-3f44becb82be",
-      "kubernetes.io/psp": "gardener.privileged",
-      "cloudfoundry.org/rootfs-version": "v75.0.0",
-      "cloudfoundry.org/version": "fcb4900c-5d96-437e-bc76-14bb03b34e9c",
-      "POD_NAME": "test-app-b-test-25a976ad95-0",
-      "statefulset.kubernetes.io/pod-name": "test-app-b-test-25a976ad95-0"
+      "kubernetes.io/psp": "gardener.privileged"
      },
      "locality": {},
      "build_version": "2369b2f31802ab74d942462ed21a00e3a38de2c5/1.12.0/Clean/RELEASE/BoringSSL"
@@ -73,9 +73,14 @@
           {
            "name": "envoy.http_connection_manager",
            "config": {
+            "http_filters": {
+             "name": "envoy.router"
+            },
+            "stat_prefix": "stats",
             "route_config": {
              "virtual_hosts": [
               {
+               "name": "backend",
                "routes": [
                 {
                  "route": {
@@ -88,16 +93,11 @@
                ],
                "domains": [
                 "*"
-               ],
-               "name": "backend"
+               ]
               }
              ]
             },
-            "codec_type": "AUTO",
-            "http_filters": {
-             "name": "envoy.router"
-            },
-            "stat_prefix": "stats"
+            "codec_type": "AUTO"
            }
           }
          ]

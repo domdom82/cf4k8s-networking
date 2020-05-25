@@ -7,23 +7,23 @@ items:
       kapp.k14s.io/change-rule.istio-sidecar-injector: upsert after upserting cf-for-k8s.cloudfoundry.org/istio-sidecar-injector
       kapp.k14s.io/identity: v1;cf-workloads/apps.cloudfoundry.org/RouteBulkSync/route-bulk-sync;apps.cloudfoundry.org/v1alpha1
       kapp.k14s.io/original: '{"apiVersion":"apps.cloudfoundry.org/v1alpha1","kind":"RouteBulkSync","metadata":{"annotations":{"kapp.k14s.io/change-rule.istio-sidecar-injector":"upsert
-        after upserting cf-for-k8s.cloudfoundry.org/istio-sidecar-injector"},"labels":{"kapp.k14s.io/app":"1589866757362046570","kapp.k14s.io/association":"v1.b390afcdb9a327cf2015c669b22131f2","shalm.wonderix.github.com/app":"cf-for-k8s","shalm.wonderix.github.com/version":"0.0.0"},"name":"route-bulk-sync","namespace":"cf-workloads"},"spec":{"selector":{"matchLabels":{"cloudfoundry.org/route-bulk-sync":"true"}},"template":{"metadata":{"labels":{"cloudfoundry.org/route-bulk-sync":"true"}}}}}'
+        after upserting cf-for-k8s.cloudfoundry.org/istio-sidecar-injector"},"labels":{"kapp.k14s.io/app":"1590385260149929678","kapp.k14s.io/association":"v1.b390afcdb9a327cf2015c669b22131f2","shalm.wonderix.github.com/app":"cf-for-k8s","shalm.wonderix.github.com/version":"0.0.0"},"name":"route-bulk-sync","namespace":"cf-workloads"},"spec":{"selector":{"matchLabels":{"cloudfoundry.org/route-bulk-sync":"true"}},"template":{"metadata":{"labels":{"cloudfoundry.org/route-bulk-sync":"true"}}}}}'
       kapp.k14s.io/original-diff: |
         []
       kapp.k14s.io/original-diff-full: ""
       kapp.k14s.io/original-diff-md5: 58e0494c51d30eb3494f7c9198986bb9
-    creationTimestamp: "2020-05-19T05:39:41Z"
+    creationTimestamp: "2020-05-25T05:41:20Z"
     generation: 1
     labels:
-      kapp.k14s.io/app: "1589866757362046570"
+      kapp.k14s.io/app: "1590385260149929678"
       kapp.k14s.io/association: v1.b390afcdb9a327cf2015c669b22131f2
       shalm.wonderix.github.com/app: cf-for-k8s
       shalm.wonderix.github.com/version: 0.0.0
     name: route-bulk-sync
     namespace: cf-workloads
-    resourceVersion: "3491"
+    resourceVersion: "3965"
     selfLink: /apis/apps.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routebulksyncs/route-bulk-sync
-    uid: 9eac9fdb-2e5a-4fc3-8fcb-d01dd6a1d21c
+    uid: a6b890f7-3c80-4a81-9ea5-53a5f8c6c8fa
   spec:
     selector:
       matchLabels:
@@ -37,34 +37,680 @@ items:
 - apiVersion: networking.cloudfoundry.org/v1alpha1
   kind: Route
   metadata:
-    creationTimestamp: "2020-05-19T08:45:37Z"
+    creationTimestamp: "2020-05-25T08:50:38Z"
     generation: 2
     labels:
       app.kubernetes.io/component: cf-networking
       app.kubernetes.io/managed-by: cloudfoundry
-      app.kubernetes.io/name: 60b4e816-b82b-4573-869d-17ed4af56328
+      app.kubernetes.io/name: 1298eb02-b14a-45fa-85fe-767fd8d6b69b
       app.kubernetes.io/part-of: cloudfoundry
       app.kubernetes.io/version: 0.0.0
-      cloudfoundry.org/domain_guid: 6478367b-8765-47a6-94a8-3f4b3ac69792
-      cloudfoundry.org/org_guid: fcfdca85-2b83-4e09-944b-56cb7c6def43
-      cloudfoundry.org/route_guid: 60b4e816-b82b-4573-869d-17ed4af56328
-      cloudfoundry.org/space_guid: 9bfab1ca-d5d1-4b21-a121-778dcc48aab5
-    name: 60b4e816-b82b-4573-869d-17ed4af56328
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 648c40a8-560c-4511-bcf6-205463b8af8e
+      cloudfoundry.org/route_guid: 1298eb02-b14a-45fa-85fe-767fd8d6b69b
+      cloudfoundry.org/space_guid: 6051bf81-329e-4e9a-907c-42c13fe2e2cf
+    name: 1298eb02-b14a-45fa-85fe-767fd8d6b69b
     namespace: cf-workloads
-    resourceVersion: "39869"
-    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/60b4e816-b82b-4573-869d-17ed4af56328
-    uid: 4941e91d-2558-402b-9522-bd852d17c45a
+    resourceVersion: "42083"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/1298eb02-b14a-45fa-85fe-767fd8d6b69b
+    uid: d1b9f8e5-16f6-4e65-8d10-2fd389578337
   spec:
     destinations:
     - app:
-        guid: f7c2663c-c32a-448a-9378-ff637238682c
+        guid: 50f787e6-6091-45f1-99e3-19d5c1471efa
         process:
           type: web
-      guid: db33aa23-2c50-4dbd-8484-5093f48b4956
+      guid: e43695ab-cddb-481d-83a3-8c7d4b6f9fed
       port: 8080
       selector:
         matchLabels:
-          cloudfoundry.org/app_guid: f7c2663c-c32a-448a-9378-ff637238682c
+          cloudfoundry.org/app_guid: 50f787e6-6091-45f1-99e3-19d5c1471efa
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-b
+    path: ""
+    url: test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T07:46:29Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 18279df0-877d-434e-b27a-7436999d1604
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 695ade9a-feec-4c5e-8f75-6805ec46e57b
+      cloudfoundry.org/route_guid: 18279df0-877d-434e-b27a-7436999d1604
+      cloudfoundry.org/space_guid: e182e267-44a8-4e15-804d-177e636e9a31
+    name: 18279df0-877d-434e-b27a-7436999d1604
+    namespace: cf-workloads
+    resourceVersion: "28751"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/18279df0-877d-434e-b27a-7436999d1604
+    uid: 709cf3ff-bac9-47e6-8157-b813d098c670
+  spec:
+    destinations:
+    - app:
+        guid: 6301517a-2437-472d-88f2-2a38cc80747e
+        process:
+          type: web
+      guid: 0f04f9b9-c186-4596-9b8f-0524c8b4fa79
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 6301517a-2437-472d-88f2-2a38cc80747e
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:54:03Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 287e5586-932a-4995-a6c7-67f61449d084
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 7163d0b6-f7a5-4b3f-b72b-40eb90bf29f2
+      cloudfoundry.org/route_guid: 287e5586-932a-4995-a6c7-67f61449d084
+      cloudfoundry.org/space_guid: d3a25b57-cd7d-49fc-aa61-b080d5251d15
+    name: 287e5586-932a-4995-a6c7-67f61449d084
+    namespace: cf-workloads
+    resourceVersion: "42931"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/287e5586-932a-4995-a6c7-67f61449d084
+    uid: 39ee3d20-8f2d-4b23-a9e6-55722f490a85
+  spec:
+    destinations:
+    - app:
+        guid: 8a47eb30-ef01-45a8-a7d2-5c54afa3f82c
+        process:
+          type: web
+      guid: 6d1f00c0-2bf7-4c37-bb0a-997489eea8a0
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 8a47eb30-ef01-45a8-a7d2-5c54afa3f82c
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-b
+    path: ""
+    url: test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:45:57Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 3c3154b0-6e2a-4f12-a22b-f91a4fab468e
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 62f0a2da-0e74-4160-bc03-e01e6505fd4e
+      cloudfoundry.org/route_guid: 3c3154b0-6e2a-4f12-a22b-f91a4fab468e
+      cloudfoundry.org/space_guid: abfca105-f3f4-4181-bc59-d97ef5ad2f8d
+    name: 3c3154b0-6e2a-4f12-a22b-f91a4fab468e
+    namespace: cf-workloads
+    resourceVersion: "40963"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/3c3154b0-6e2a-4f12-a22b-f91a4fab468e
+    uid: 7582f11e-d66f-44aa-b4bb-3b7ef717f60a
+  spec:
+    destinations:
+    - app:
+        guid: a095ac44-329b-47e8-b2f9-6ddb0b373157
+        process:
+          type: web
+      guid: c4aa586d-adbf-4f69-a1e1-0f3bc7ab2fde
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: a095ac44-329b-47e8-b2f9-6ddb0b373157
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T07:01:11Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 69e7d3fc-36dc-4b28-9fd6-50825237d87e
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: f46c3b00-b5ee-4fa0-8f94-53891fbbb95c
+      cloudfoundry.org/route_guid: 69e7d3fc-36dc-4b28-9fd6-50825237d87e
+      cloudfoundry.org/space_guid: e50303c3-dfcb-495b-888e-5b5241f9cb78
+    name: 69e7d3fc-36dc-4b28-9fd6-50825237d87e
+    namespace: cf-workloads
+    resourceVersion: "19342"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/69e7d3fc-36dc-4b28-9fd6-50825237d87e
+    uid: d179b7ee-4db3-470a-8380-fccd506bce8d
+  spec:
+    destinations:
+    - app:
+        guid: ce695923-6d47-4eac-8b4b-f784949e753a
+        process:
+          type: web
+      guid: 080e9d9e-6838-4107-8b5b-fd833045b906
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: ce695923-6d47-4eac-8b4b-f784949e753a
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-go-appp
+    path: ""
+    url: test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:17:02Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 6b3d2007-8e83-4ae5-b084-e3ed99498116
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 83796198-1166-4c88-8c03-b6567a065f60
+      cloudfoundry.org/route_guid: 6b3d2007-8e83-4ae5-b084-e3ed99498116
+      cloudfoundry.org/space_guid: 9d40e37a-d2c0-48f2-8914-f937133dd340
+    name: 6b3d2007-8e83-4ae5-b084-e3ed99498116
+    namespace: cf-workloads
+    resourceVersion: "35051"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/6b3d2007-8e83-4ae5-b084-e3ed99498116
+    uid: 8063fa9f-7ca7-4bf0-a65f-0f070bc37fc1
+  spec:
+    destinations:
+    - app:
+        guid: 708cfbfe-9d53-4547-a8e0-b7c5882ff891
+        process:
+          type: web
+      guid: 0622f5af-90fb-4c5a-b491-c89c0db407f9
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 708cfbfe-9d53-4547-a8e0-b7c5882ff891
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T07:31:20Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 7860b20b-66a2-41c2-ad77-5c308eba8cf1
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 9a3d1605-3bb5-4d47-a4c2-e32c1cd5fd54
+      cloudfoundry.org/route_guid: 7860b20b-66a2-41c2-ad77-5c308eba8cf1
+      cloudfoundry.org/space_guid: 56e7b21e-f8a6-4b22-8f67-6a1ab5006d7d
+    name: 7860b20b-66a2-41c2-ad77-5c308eba8cf1
+    namespace: cf-workloads
+    resourceVersion: "25599"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/7860b20b-66a2-41c2-ad77-5c308eba8cf1
+    uid: 7c1033f0-869a-4072-9ffb-4c155fe7a653
+  spec:
+    destinations:
+    - app:
+        guid: 261c3502-f796-40a0-8248-dcc6e643f1dd
+        process:
+          type: web
+      guid: 63ffebc0-1197-435d-8903-a2311c501a4a
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 261c3502-f796-40a0-8248-dcc6e643f1dd
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T05:47:23Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 7ae821d3-c61b-4851-b3cd-803ba4a1264e
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 03e4e157-4f96-4cf6-a397-9eda09c70476
+      cloudfoundry.org/route_guid: 7ae821d3-c61b-4851-b3cd-803ba4a1264e
+      cloudfoundry.org/space_guid: c3faf850-3d02-4cbd-9a70-30736afd10c4
+    name: 7ae821d3-c61b-4851-b3cd-803ba4a1264e
+    namespace: cf-workloads
+    resourceVersion: "4403"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/7ae821d3-c61b-4851-b3cd-803ba4a1264e
+    uid: 1521cc91-594b-4870-95cb-d448908dd2c5
+  spec:
+    destinations:
+    - app:
+        guid: facecdee-2511-4f96-89ec-80112241a47a
+        process:
+          type: web
+      guid: c2296346-42bb-4d05-ad67-60dea7156eb5
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: facecdee-2511-4f96-89ec-80112241a47a
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: cf-for-k8s-smoke-1-app-ea26015f5fe67f5c
+    path: ""
+    url: cf-for-k8s-smoke-1-app-ea26015f5fe67f5c.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T07:16:00Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 7e8c848c-496d-4965-a17b-4425921e4a7b
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 5b20f52b-cfb3-4d68-a1dc-1ce74cb811c7
+      cloudfoundry.org/route_guid: 7e8c848c-496d-4965-a17b-4425921e4a7b
+      cloudfoundry.org/space_guid: b81a21d4-d755-4483-9909-a33e2fd5b6c1
+    name: 7e8c848c-496d-4965-a17b-4425921e4a7b
+    namespace: cf-workloads
+    resourceVersion: "22430"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/7e8c848c-496d-4965-a17b-4425921e4a7b
+    uid: c58243d6-c0fe-491d-880b-9ec46923020e
+  spec:
+    destinations:
+    - app:
+        guid: 278bc995-c1c0-42c1-9bd2-c3946a799a17
+        process:
+          type: web
+      guid: 558265e6-0ea8-42e4-882e-14f454e03108
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 278bc995-c1c0-42c1-9bd2-c3946a799a17
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:52:54Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: 9e3bf339-9bc1-451b-80b9-7853286b765d
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 992bf5f1-d37e-42cb-869e-659c014da612
+      cloudfoundry.org/route_guid: 9e3bf339-9bc1-451b-80b9-7853286b765d
+      cloudfoundry.org/space_guid: 7a85377f-4b27-446e-a18d-ea7dd49014db
+    name: 9e3bf339-9bc1-451b-80b9-7853286b765d
+    namespace: cf-workloads
+    resourceVersion: "42646"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/9e3bf339-9bc1-451b-80b9-7853286b765d
+    uid: f29786b4-8dd2-4745-b0fd-4d093438dc5f
+  spec:
+    destinations:
+    - app:
+        guid: 17eaca43-648b-4e5a-a810-cd9a61180b82
+        process:
+          type: web
+      guid: 05b43e63-b17a-4a82-93a7-8e0d9071ca5d
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 17eaca43-648b-4e5a-a810-cd9a61180b82
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-a
+    path: ""
+    url: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:31:01Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: b21a6598-7d6c-4570-b621-7f4b3b241e39
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 8b4e7111-6765-417b-8f2c-2662a439e1d8
+      cloudfoundry.org/route_guid: b21a6598-7d6c-4570-b621-7f4b3b241e39
+      cloudfoundry.org/space_guid: d7afe726-3ecf-4c32-8d7c-b8460599f308
+    name: b21a6598-7d6c-4570-b621-7f4b3b241e39
+    namespace: cf-workloads
+    resourceVersion: "37931"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/b21a6598-7d6c-4570-b621-7f4b3b241e39
+    uid: 928a4b85-f9d9-4e4d-b067-d1f8aa71bc7d
+  spec:
+    destinations:
+    - app:
+        guid: 9cc4ae4d-6f6f-463e-8891-a2ad09409718
+        process:
+          type: web
+      guid: 352573ae-8439-40b8-ad4e-4d1626e04d83
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 9cc4ae4d-6f6f-463e-8891-a2ad09409718
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T06:36:19Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: bb24962b-6a35-4135-9f0d-e84e06fff828
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 9cedc10b-68c1-4d99-82a4-4b2ceb8de13f
+      cloudfoundry.org/route_guid: bb24962b-6a35-4135-9f0d-e84e06fff828
+      cloudfoundry.org/space_guid: 1f393c72-4830-46fa-9940-f9b1c722e6c8
+    name: bb24962b-6a35-4135-9f0d-e84e06fff828
+    namespace: cf-workloads
+    resourceVersion: "14255"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/bb24962b-6a35-4135-9f0d-e84e06fff828
+    uid: 8406b5da-ae91-46d1-9871-33d7fc9cab94
+  spec:
+    destinations:
+    - app:
+        guid: 64c6c993-89f1-4390-8521-227f160cc3a9
+        process:
+          type: web
+      guid: d64f8933-745f-4b35-844c-eca631c6a2e7
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 64c6c993-89f1-4390-8521-227f160cc3a9
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-philipp2
+    path: ""
+    url: test-app-philipp2.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:49:45Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: c871e8a7-bd95-4ce6-b9b0-4bc13019b2e2
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 35d33cba-830f-48d9-aa49-09fe3fe6d7f9
+      cloudfoundry.org/route_guid: c871e8a7-bd95-4ce6-b9b0-4bc13019b2e2
+      cloudfoundry.org/space_guid: 943dc418-2545-419f-8a02-a7816348a76f
+    name: c871e8a7-bd95-4ce6-b9b0-4bc13019b2e2
+    namespace: cf-workloads
+    resourceVersion: "41853"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/c871e8a7-bd95-4ce6-b9b0-4bc13019b2e2
+    uid: 23774960-ab6f-470b-9102-d1dadcdde116
+  spec:
+    destinations:
+    - app:
+        guid: 71ffccd1-340e-4e29-bdb9-5b258c97b637
+        process:
+          type: web
+      guid: 4f1f73f9-25fc-4738-a8e5-e737279cbe0b
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 71ffccd1-340e-4e29-bdb9-5b258c97b637
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-a
+    path: ""
+    url: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T07:00:58Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: d0d52949-c77b-4cb7-8e08-f6a15a248df2
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 325b7389-16ce-4f92-aa0d-6142911e0f9d
+      cloudfoundry.org/route_guid: d0d52949-c77b-4cb7-8e08-f6a15a248df2
+      cloudfoundry.org/space_guid: 0109ad00-da35-43be-ab5f-455926083d77
+    name: d0d52949-c77b-4cb7-8e08-f6a15a248df2
+    namespace: cf-workloads
+    resourceVersion: "19274"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/d0d52949-c77b-4cb7-8e08-f6a15a248df2
+    uid: 387149b4-2478-4cd6-a11d-ec56c0d6715a
+  spec:
+    destinations:
+    - app:
+        guid: e8c82cda-475c-4177-bdfb-ad6d8c1ae93e
+        process:
+          type: web
+      guid: 7a26050f-71fb-4db0-8cac-0e910fe57dd3
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: e8c82cda-475c-4177-bdfb-ad6d8c1ae93e
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T05:49:18Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: ea89dd04-9921-4991-a744-8ae0975b2890
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 169c3529-d850-4617-a201-5b638a98555c
+      cloudfoundry.org/route_guid: ea89dd04-9921-4991-a744-8ae0975b2890
+      cloudfoundry.org/space_guid: cd594225-90f8-4bfe-a6ee-026558171b7a
+    name: ea89dd04-9921-4991-a744-8ae0975b2890
+    namespace: cf-workloads
+    resourceVersion: "4856"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/ea89dd04-9921-4991-a744-8ae0975b2890
+    uid: beb8b714-bf10-4948-bf81-7297d0103fe2
+  spec:
+    destinations:
+    - app:
+        guid: e37c3af9-4a62-4919-bbf9-ded14106569d
+        process:
+          type: web
+      guid: cef79656-0d76-4e53-be0f-3f75e7f5066c
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: e37c3af9-4a62-4919-bbf9-ded14106569d
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: cf-for-k8s-smoke-1-app-ccfba20c40a39019
+    path: ""
+    url: cf-for-k8s-smoke-1-app-ccfba20c40a39019.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:01:29Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: f5c5cb29-83bc-4a1d-8536-c8a92742a6fb
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: d545c656-a126-4257-ac5c-5945a5baad73
+      cloudfoundry.org/route_guid: f5c5cb29-83bc-4a1d-8536-c8a92742a6fb
+      cloudfoundry.org/space_guid: da23e911-e29e-4d7d-a809-25099f942c37
+    name: f5c5cb29-83bc-4a1d-8536-c8a92742a6fb
+    namespace: cf-workloads
+    resourceVersion: "31850"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/f5c5cb29-83bc-4a1d-8536-c8a92742a6fb
+    uid: ac08d503-4823-4a07-9b6b-b65463d01eeb
+  spec:
+    destinations:
+    - app:
+        guid: e66c9ccf-b4cd-4340-ae38-eeb2df83e8d1
+        process:
+          type: web
+      guid: 7934ce11-fb4a-4f34-9dc5-f28e8498746b
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: e66c9ccf-b4cd-4340-ae38-eeb2df83e8d1
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app
+    path: ""
+    url: test-app.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T08:54:53Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: f81ee6e9-cbf6-4373-865d-cfeadf645a0f
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 7163d0b6-f7a5-4b3f-b72b-40eb90bf29f2
+      cloudfoundry.org/route_guid: f81ee6e9-cbf6-4373-865d-cfeadf645a0f
+      cloudfoundry.org/space_guid: d3a25b57-cd7d-49fc-aa61-b080d5251d15
+    name: f81ee6e9-cbf6-4373-865d-cfeadf645a0f
+    namespace: cf-workloads
+    resourceVersion: "43156"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/f81ee6e9-cbf6-4373-865d-cfeadf645a0f
+    uid: f0acf312-d680-450e-abd3-12bb60e285b8
+  spec:
+    destinations:
+    - app:
+        guid: 8a47eb30-ef01-45a8-a7d2-5c54afa3f82c
+        process:
+          type: web
+      guid: d00e7335-1381-420d-857b-0de13228d029
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 8a47eb30-ef01-45a8-a7d2-5c54afa3f82c
+          cloudfoundry.org/process_type: web
+    domain:
+      internal: false
+      name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    host: test-app-b1
+    path: ""
+    url: test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+- apiVersion: networking.cloudfoundry.org/v1alpha1
+  kind: Route
+  metadata:
+    creationTimestamp: "2020-05-25T09:00:09Z"
+    generation: 2
+    labels:
+      app.kubernetes.io/component: cf-networking
+      app.kubernetes.io/managed-by: cloudfoundry
+      app.kubernetes.io/name: fd86603c-9a3b-44c7-b91c-19c5a88e6980
+      app.kubernetes.io/part-of: cloudfoundry
+      app.kubernetes.io/version: 0.0.0
+      cloudfoundry.org/domain_guid: f11b0021-ebda-4186-9545-9d2fae988154
+      cloudfoundry.org/org_guid: 2eccdf0c-ffad-419c-8718-a6569b6104ed
+      cloudfoundry.org/route_guid: fd86603c-9a3b-44c7-b91c-19c5a88e6980
+      cloudfoundry.org/space_guid: 2032c518-0914-4c05-bf6e-98d8dd6ffb5a
+    name: fd86603c-9a3b-44c7-b91c-19c5a88e6980
+    namespace: cf-workloads
+    resourceVersion: "44247"
+    selfLink: /apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/fd86603c-9a3b-44c7-b91c-19c5a88e6980
+    uid: 555d28dd-391b-4ebf-af98-28363f3f94fb
+  spec:
+    destinations:
+    - app:
+        guid: 26a01099-5e3b-463d-8885-97adb4e0ad6c
+        process:
+          type: web
+      guid: 1eb8bd32-edda-4221-aa46-22f2e51fbf7d
+      port: 8080
+      selector:
+        matchLabels:
+          cloudfoundry.org/app_guid: 26a01099-5e3b-463d-8885-97adb4e0ad6c
           cloudfoundry.org/process_type: web
     domain:
       internal: false

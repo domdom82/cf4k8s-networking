@@ -7,8 +7,6 @@
      "id": "router~100.96.2.4~istio-ingressgateway-478ls.istio-system~istio-system.svc.cluster.local",
      "cluster": "istio-ingressgateway",
      "metadata": {
-      "ISTIO_PROXY_SHA": "istio-proxy:2369b2f31802ab74d942462ed21a00e3a38de2c5",
-      "NAME": "istio-ingressgateway-478ls",
       "app": "istio-ingressgateway",
       "NAMESPACE": "istio-system",
       "EXCHANGE_KEYS": "NAME,NAMESPACE,INSTANCE_IPS,LABELS,OWNER,PLATFORM_METADATA,WORKLOAD_NAME,CANONICAL_TELEMETRY_SERVICE,MESH_ID,SERVICE_ACCOUNT",
@@ -27,7 +25,9 @@
       "LABELS": {
        "istio": "ingressgateway",
        "app": "istio-ingressgateway"
-      }
+      },
+      "ISTIO_PROXY_SHA": "istio-proxy:2369b2f31802ab74d942462ed21a00e3a38de2c5",
+      "NAME": "istio-ingressgateway-478ls"
      },
      "locality": {},
      "build_version": "2369b2f31802ab74d942462ed21a00e3a38de2c5/1.12.0/Clean/RELEASE/BoringSSL"
@@ -50,7 +50,6 @@
             "route_config": {
              "virtual_hosts": [
               {
-               "name": "backend",
                "routes": [
                 {
                  "route": {
@@ -63,7 +62,8 @@
                ],
                "domains": [
                 "*"
-               ]
+               ],
+               "name": "backend"
               }
              ]
             },
@@ -380,7 +380,7 @@
   },
   {
    "@type": "type.googleapis.com/envoy.admin.v2alpha.ClustersConfigDump",
-   "version_info": "2020-05-25T08:58:04Z/126",
+   "version_info": "2020-05-25T09:02:11Z/134",
    "static_clusters": [
     {
      "cluster": {
@@ -1428,6 +1428,81 @@
       }
      },
      "last_updated": "2020-05-25T07:01:14.698Z"
+    },
+    {
+     "version_info": "2020-05-25T09:00:12Z/128",
+     "cluster": {
+      "name": "outbound_.8080_._.s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound_.8080_._.s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      }
+     },
+     "last_updated": "2020-05-25T09:00:12.785Z"
+    },
+    {
+     "version_info": "2020-05-25T09:01:13Z/131",
+     "cluster": {
+      "name": "outbound_.8080_._.s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound_.8080_._.s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      }
+     },
+     "last_updated": "2020-05-25T09:01:13.604Z"
+    },
+    {
+     "version_info": "2020-05-25T09:02:11Z/134",
+     "cluster": {
+      "name": "outbound_.8080_._.s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound_.8080_._.s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      }
+     },
+     "last_updated": "2020-05-25T09:02:11.853Z"
     },
     {
      "version_info": "2020-05-25T05:43:31Z/8",
@@ -4426,6 +4501,216 @@
      "last_updated": "2020-05-25T07:02:46.795Z"
     },
     {
+     "version_info": "2020-05-25T09:01:01Z/130",
+     "cluster": {
+      "name": "outbound|8080||s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound|8080||s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      },
+      "transport_socket_matches": [
+       {
+        "name": "tlsMode-istio",
+        "match": {
+         "tlsMode": "istio"
+        },
+        "transport_socket": {
+         "name": "tls",
+         "typed_config": {
+          "@type": "type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext",
+          "common_tls_context": {
+           "tls_certificates": [
+            {
+             "certificate_chain": {
+              "filename": "/etc/certs/cert-chain.pem"
+             },
+             "private_key": {
+              "filename": "/etc/certs/key.pem"
+             }
+            }
+           ],
+           "alpn_protocols": [
+            "istio"
+           ],
+           "validation_context": {
+            "trusted_ca": {
+             "filename": "/etc/certs/root-cert.pem"
+            },
+            "verify_subject_alt_name": [
+             "spiffe://cluster.local/ns/cf-workloads/sa/eirini-privileged"
+            ]
+           }
+          },
+          "sni": "outbound_.8080_._.s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+         }
+        }
+       },
+       {
+        "name": "tlsMode-disabled",
+        "match": {},
+        "transport_socket": {
+         "name": "raw_buffer"
+        }
+       }
+      ]
+     },
+     "last_updated": "2020-05-25T09:01:01.701Z"
+    },
+    {
+     "version_info": "2020-05-25T09:01:59Z/133",
+     "cluster": {
+      "name": "outbound|8080||s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound|8080||s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      },
+      "transport_socket_matches": [
+       {
+        "name": "tlsMode-istio",
+        "match": {
+         "tlsMode": "istio"
+        },
+        "transport_socket": {
+         "name": "tls",
+         "typed_config": {
+          "@type": "type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext",
+          "common_tls_context": {
+           "tls_certificates": [
+            {
+             "certificate_chain": {
+              "filename": "/etc/certs/cert-chain.pem"
+             },
+             "private_key": {
+              "filename": "/etc/certs/key.pem"
+             }
+            }
+           ],
+           "alpn_protocols": [
+            "istio"
+           ],
+           "validation_context": {
+            "trusted_ca": {
+             "filename": "/etc/certs/root-cert.pem"
+            },
+            "verify_subject_alt_name": [
+             "spiffe://cluster.local/ns/cf-workloads/sa/eirini-privileged"
+            ]
+           }
+          },
+          "sni": "outbound_.8080_._.s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+         }
+        }
+       },
+       {
+        "name": "tlsMode-disabled",
+        "match": {},
+        "transport_socket": {
+         "name": "raw_buffer"
+        }
+       }
+      ]
+     },
+     "last_updated": "2020-05-25T09:01:59.358Z"
+    },
+    {
+     "version_info": "2020-05-25T09:02:11Z/134",
+     "cluster": {
+      "name": "outbound|8080||s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local",
+      "type": "EDS",
+      "eds_cluster_config": {
+       "eds_config": {
+        "ads": {}
+       },
+       "service_name": "outbound|8080||s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+      },
+      "connect_timeout": "1s",
+      "circuit_breakers": {
+       "thresholds": [
+        {
+         "max_connections": 4294967295,
+         "max_pending_requests": 4294967295,
+         "max_requests": 4294967295,
+         "max_retries": 4294967295
+        }
+       ]
+      },
+      "transport_socket_matches": [
+       {
+        "name": "tlsMode-istio",
+        "match": {
+         "tlsMode": "istio"
+        },
+        "transport_socket": {
+         "name": "tls",
+         "typed_config": {
+          "@type": "type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext",
+          "common_tls_context": {
+           "tls_certificates": [
+            {
+             "certificate_chain": {
+              "filename": "/etc/certs/cert-chain.pem"
+             },
+             "private_key": {
+              "filename": "/etc/certs/key.pem"
+             }
+            }
+           ],
+           "alpn_protocols": [
+            "istio"
+           ],
+           "validation_context": {
+            "trusted_ca": {
+             "filename": "/etc/certs/root-cert.pem"
+            },
+            "verify_subject_alt_name": [
+             "spiffe://cluster.local/ns/cf-workloads/sa/eirini-privileged"
+            ]
+           }
+          },
+          "sni": "outbound_.8080_._.s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+         }
+        }
+       },
+       {
+        "name": "tlsMode-disabled",
+        "match": {},
+        "transport_socket": {
+         "name": "raw_buffer"
+        }
+       }
+      ]
+     },
+     "last_updated": "2020-05-25T09:02:11.852Z"
+    },
+    {
      "version_info": "2020-05-25T05:45:26Z/20",
      "cluster": {
       "name": "outbound|8080||uaa.cf-system.svc.cluster.local",
@@ -5461,7 +5746,6 @@
            "route_config": {
             "virtual_hosts": [
              {
-              "name": "backend",
               "routes": [
                {
                 "route": {
@@ -5474,7 +5758,8 @@
               ],
               "domains": [
                "*"
-              ]
+              ],
+              "name": "backend"
              }
             ]
            }
@@ -5894,7 +6179,7 @@
    ],
    "dynamic_route_configs": [
     {
-     "version_info": "2020-05-25T08:58:05Z/127",
+     "version_info": "2020-05-25T09:02:12Z/135",
      "route_config": {
       "name": "http.80",
       "virtual_hosts": [
@@ -6299,6 +6584,336 @@
         ]
        },
        {
+        "name": "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
+        "domains": [
+         "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-baa9a33911929c11530b667b4a09c46c2c7e73380ab57f88ce66ff0b727881c1"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "26a01099-5e3b-463d-8885-97adb4e0ad6c"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "2eccdf0c-ffad-419c-8718-a6569b6104ed"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "2032c518-0914-4c05-bf6e-98d8dd6ffb5a"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
+        "name": "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
+        "domains": [
+         "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "79611488-3f30-4396-99d6-cb6393f02245"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "06a6a55e-ea35-440a-8853-3f44becb82be"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
+        "name": "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
+        "domains": [
+         "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-0c7576448ea581fbaf54400e91ee52728618f2869cea4280b28c70be579762f2"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "79611488-3f30-4396-99d6-cb6393f02245"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "06a6a55e-ea35-440a-8853-3f44becb82be"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
         "name": "test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
         "domains": [
          "test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
@@ -6491,10 +7106,10 @@
       ],
       "validate_clusters": false
      },
-     "last_updated": "2020-05-25T08:58:05.344Z"
+     "last_updated": "2020-05-25T09:02:12.058Z"
     },
     {
-     "version_info": "2020-05-25T08:58:05Z/127",
+     "version_info": "2020-05-25T09:02:12Z/135",
      "route_config": {
       "name": "https.443.https-system.istio-ingressgateway.cf-system",
       "virtual_hosts": [
@@ -6899,6 +7514,336 @@
         ]
        },
        {
+        "name": "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443",
+        "domains": [
+         "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-baa9a33911929c11530b667b4a09c46c2c7e73380ab57f88ce66ff0b727881c1"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "26a01099-5e3b-463d-8885-97adb4e0ad6c"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "2eccdf0c-ffad-419c-8718-a6569b6104ed"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "2032c518-0914-4c05-bf6e-98d8dd6ffb5a"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-1eb8bd32-edda-4221-aa46-22f2e51fbf7d"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
+        "name": "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443",
+        "domains": [
+         "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "79611488-3f30-4396-99d6-cb6393f02245"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "06a6a55e-ea35-440a-8853-3f44becb82be"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-35816fe1-db6f-4981-a659-347b7005ee3b"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
+        "name": "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443",
+        "domains": [
+         "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+         "test-app-b1.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443"
+        ],
+        "routes": [
+         {
+          "match": {
+           "prefix": "/"
+          },
+          "route": {
+           "cluster": "outbound|8080||s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local",
+           "timeout": "0s",
+           "retry_policy": {
+            "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes",
+            "num_retries": 2,
+            "retry_host_predicate": [
+             {
+              "name": "envoy.retry_host_predicates.previous_hosts"
+             }
+            ],
+            "host_selection_retry_max_attempts": "5",
+            "retriable_status_codes": [
+             503
+            ]
+           },
+           "max_grpc_timeout": "0s"
+          },
+          "metadata": {
+           "filter_metadata": {
+            "istio": {
+             "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-0c7576448ea581fbaf54400e91ee52728618f2869cea4280b28c70be579762f2"
+            }
+           }
+          },
+          "decorator": {
+           "operation": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local:8080/*"
+          },
+          "request_headers_to_add": [
+           {
+            "header": {
+             "key": "CF-App-Id",
+             "value": "79611488-3f30-4396-99d6-cb6393f02245"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-App-Process-Type",
+             "value": "web"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Organization-Id",
+             "value": "06a6a55e-ea35-440a-8853-3f44becb82be"
+            },
+            "append": false
+           },
+           {
+            "header": {
+             "key": "CF-Space-Id",
+             "value": "d2cf7627-d0d1-4652-8926-b8a5fc47ac1d"
+            },
+            "append": false
+           }
+          ],
+          "typed_per_filter_config": {
+           "mixer": {
+            "@type": "type.googleapis.com/istio.mixer.v1.config.client.ServiceConfig",
+            "disable_check_calls": true,
+            "mixer_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              }
+             }
+            },
+            "forward_attributes": {
+             "attributes": {
+              "destination.service.host": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241.cf-workloads.svc.cluster.local"
+              },
+              "destination.service.name": {
+               "string_value": "s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              },
+              "destination.service.namespace": {
+               "string_value": "cf-workloads"
+              },
+              "destination.service.uid": {
+               "string_value": "istio://cf-workloads/services/s-ce8514d9-a8f6-4bcb-b081-ea77a0649241"
+              }
+             }
+            }
+           }
+          }
+         }
+        ]
+       },
+       {
         "name": "test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:443",
         "domains": [
          "test-go-appp.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
@@ -7091,7 +8036,7 @@
       ],
       "validate_clusters": false
      },
-     "last_updated": "2020-05-25T08:58:05.346Z"
+     "last_updated": "2020-05-25T09:02:12.061Z"
     }
    ]
   },
