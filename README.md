@@ -47,10 +47,10 @@ Envoy Ingress [config](examples/initial/ingress.json) contains:
   - cluster
     - type
     - service_name
-    - circuit breaking (Envoy enforces these limits at network level) 
+    - circuit breaking (Envoy enforces these limits at network level)
     - transport_socket (for tls context)
 - listeners
-- routes 
+- routes
 - secrets
 
 The istio documentation has some information on how-to retrieve the current configuration of the sidecar and ingress envoys in a cluster using the `istioctl` https://istio.io/docs/ops/diagnostic-tools/proxy-cmd/
@@ -59,9 +59,68 @@ In the istio case other envoy proxy runs on the same node (as sidecar container)
 
 ![](doc/Envoy_flow.png)
 
-## Open topics
+## CloudFoundry, Istio and Envoy Config Diffs
+This section describes what happens during common cf push and map-route use-cases.
+For this purpose, a single app `test-app-a` is pushed, then another app `test-app-b`.
+Finally, an additional route is mapped to `test-app-b` and the effects on CF, istio and envoy layers are documented.
 
-* Looking at what the Envoy's (sidecar and gateway) configuration looks like
+### Push Single App
+CF:
+
+1. A new CR of kind "Route" gets created: `/apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/<UUID>`
+1. The spec contains the new route information:
+```
+spec:
+  destinations:
+  - app:
+      guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+      process:
+        type: web
+    guid: 7afcae7d-d2ff-4310-9e74-2ec9ca4cca19
+    port: 8080
+    selector:
+      matchLabels:
+        cloudfoundry.org/app_guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+        cloudfoundry.org/process_type: web
+  domain:
+    internal: false
+    name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+  host: test-app-a
+  path: ""
+  url: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+```
+
+Istio:
+
+1. A new VirtualService gets created: `/apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-<unique name>`
+1. The spec contains the public DNS name of the app, the service name to which traffic will be routed as well as HTTP headers to set. 
+```
+ spec:
+    gateways:
+    - cf-system/istio-ingressgateway
+    hosts:
+    - test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    http:
+    - route:
+      - destination:
+          host: s-833a86e8-414f-4ac7-882b-6bc0c3c40366
+        headers:
+          request:
+            set:
+              CF-App-Id: 673ab4f3-101c-41a6-b1e3-aca13da1dd45
+              CF-App-Process-Type: web
+              CF-Organization-Id: e9aab7d8-298f-4aa7-9a77-46a721a36197
+              CF-Space-Id: e7bb5fa9-9496-4179-b244-806b268a8c64
+          response: {}
+```
+
+Envoy:
+
+1. Envoy will pick up ingress spec from istio to map a host name to a service name
+
+### Push Another App
+### Map Additional Route
+
 
 ### Debugging
 
