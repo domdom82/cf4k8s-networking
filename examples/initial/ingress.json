@@ -7,6 +7,13 @@
      "id": "router~100.96.2.4~istio-ingressgateway-478ls.istio-system~istio-system.svc.cluster.local",
      "cluster": "istio-ingressgateway",
      "metadata": {
+      "POD_NAME": "istio-ingressgateway-478ls",
+      "istio": "ingressgateway",
+      "CLUSTER_ID": "Kubernetes",
+      "LABELS": {
+       "istio": "ingressgateway",
+       "app": "istio-ingressgateway"
+      },
       "ISTIO_PROXY_SHA": "istio-proxy:2369b2f31802ab74d942462ed21a00e3a38de2c5",
       "NAME": "istio-ingressgateway-478ls",
       "app": "istio-ingressgateway",
@@ -20,14 +27,7 @@
       "OWNER": "kubernetes://apis/apps/v1/namespaces/istio-system/deployments/istio-ingressgateway",
       "WORKLOAD_NAME": "istio-ingressgateway",
       "ISTIO_VERSION": "1.4.5",
-      "ROUTER_MODE": "sni-dnat",
-      "POD_NAME": "istio-ingressgateway-478ls",
-      "istio": "ingressgateway",
-      "CLUSTER_ID": "Kubernetes",
-      "LABELS": {
-       "istio": "ingressgateway",
-       "app": "istio-ingressgateway"
-      }
+      "ROUTER_MODE": "sni-dnat"
      },
      "locality": {},
      "build_version": "2369b2f31802ab74d942462ed21a00e3a38de2c5/1.12.0/Clean/RELEASE/BoringSSL"
@@ -50,20 +50,20 @@
             "route_config": {
              "virtual_hosts": [
               {
-               "name": "backend",
                "routes": [
                 {
-                 "route": {
-                  "cluster": "prometheus_stats"
-                 },
                  "match": {
                   "prefix": "/stats/prometheus"
+                 },
+                 "route": {
+                  "cluster": "prometheus_stats"
                  }
                 }
                ],
                "domains": [
                 "*"
-               ]
+               ],
+               "name": "backend"
               }
              ]
             },
@@ -380,7 +380,7 @@
   },
   {
    "@type": "type.googleapis.com/envoy.admin.v2alpha.ClustersConfigDump",
-   "version_info": "2020-05-25T08:58:04Z/126",
+   "version_info": "2020-05-25T09:02:24Z/138",
    "static_clusters": [
     {
      "cluster": {
@@ -5453,11 +5453,6 @@
          {
           "name": "envoy.http_connection_manager",
           "config": {
-           "codec_type": "AUTO",
-           "http_filters": {
-            "name": "envoy.router"
-           },
-           "stat_prefix": "stats",
            "route_config": {
             "virtual_hosts": [
              {
@@ -5477,7 +5472,12 @@
               ]
              }
             ]
-           }
+           },
+           "codec_type": "AUTO",
+           "http_filters": {
+            "name": "envoy.router"
+           },
+           "stat_prefix": "stats"
           }
          }
         ]
@@ -5894,7 +5894,7 @@
    ],
    "dynamic_route_configs": [
     {
-     "version_info": "2020-05-25T08:58:05Z/127",
+     "version_info": "2020-05-25T09:02:25Z/139",
      "route_config": {
       "name": "http.80",
       "virtual_hosts": [
@@ -6491,10 +6491,10 @@
       ],
       "validate_clusters": false
      },
-     "last_updated": "2020-05-25T08:58:05.344Z"
+     "last_updated": "2020-05-25T09:02:25.144Z"
     },
     {
-     "version_info": "2020-05-25T08:58:05Z/127",
+     "version_info": "2020-05-25T09:02:25Z/139",
      "route_config": {
       "name": "https.443.https-system.istio-ingressgateway.cf-system",
       "virtual_hosts": [
@@ -7091,7 +7091,7 @@
       ],
       "validate_clusters": false
      },
-     "last_updated": "2020-05-25T08:58:05.346Z"
+     "last_updated": "2020-05-25T09:02:25.146Z"
     }
    ]
   },
