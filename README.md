@@ -78,9 +78,215 @@ The upcoming architecture will merge them into a single istiod component:
 
 https://istio.io/docs/concepts/security/arch-sec.svg
 
-## Open topics
+## CloudFoundry, Istio and Envoy Config Diffs
+This section describes what happens during common cf push and map-route use-cases.
+For this purpose, a single app `test-app-a` is pushed, then another app `test-app-b`.
+Finally, an additional route is mapped to `test-app-b` and the effects on CF, istio and envoy layers are documented.
 
-* Looking at what the Envoy's (sidecar and gateway) configuration looks like
+### Push Single App
+CF:
+
+1. A new CR of kind "Route" gets created: `/apis/networking.cloudfoundry.org/v1alpha1/namespaces/cf-workloads/routes/<UUID>`
+1. The spec contains the new route information:
+```
+spec:
+  destinations:
+  - app:
+      guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+      process:
+        type: web
+    guid: 7afcae7d-d2ff-4310-9e74-2ec9ca4cca19
+    port: 8080
+    selector:
+      matchLabels:
+        cloudfoundry.org/app_guid: 292c7ae2-8d4c-449c-bd56-ec40ca644d57
+        cloudfoundry.org/process_type: web
+  domain:
+    internal: false
+    name: cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+  host: test-app-a
+  path: ""
+  url: test-app-a.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+```
+
+Istio:
+
+1. A new VirtualService gets created: `/apis/networking.istio.io/v1alpha3/namespaces/cf-workloads/virtualservices/vs-<unique name>`
+1. The spec contains the public DNS name of the app, the service name to which traffic will be routed as well as HTTP headers to set. 
+```yaml
+ spec:
+    gateways:
+    - cf-system/istio-ingressgateway
+    hosts:
+    - test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com
+    http:
+    - route:
+      - destination:
+          host: s-833a86e8-414f-4ac7-882b-6bc0c3c40366
+        headers:
+          request:
+            set:
+              CF-App-Id: 673ab4f3-101c-41a6-b1e3-aca13da1dd45
+              CF-App-Process-Type: web
+              CF-Organization-Id: e9aab7d8-298f-4aa7-9a77-46a721a36197
+              CF-Space-Id: e7bb5fa9-9496-4179-b244-806b268a8c64
+          response: {}
+```
+
+Ingress Envoy:
+
+1. Envoy will pick up ingress spec from istio to map a host name to a service name
+1. A new cluster entry is added to the ingress envoy config. (Don't confuse cluster with kubernetes cluster - it's an envoy backend)
+   The cluster entry contains info needed for the ingress envoy to open a TLS session with the app sidecar envoy
+```json
+            "name": "outbound|8080||s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local",
+            "transport_socket_matches": [
+              {
+                "match": {
+                  "tlsMode": "istio"
+                },
+                "name": "tlsMode-istio",
+                "transport_socket": {
+                  "name": "tls",
+                  "typed_config": {
+                    "@type": "type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext",
+                    "common_tls_context": {
+                      "alpn_protocols": [
+                        "istio"
+                      ],
+                      "tls_certificates": [
+                        {
+                          "certificate_chain": {
+                            "filename": "/etc/certs/cert-chain.pem"
+                          },
+                          "private_key": {
+                            "filename": "/etc/certs/key.pem"
+                          }
+                        }
+                      ],
+                      "validation_context": {
+                        "trusted_ca": {
+                          "filename": "/etc/certs/root-cert.pem"
+                        },
+                        "verify_subject_alt_name": [
+                          "spiffe://cluster.local/ns/cf-workloads/sa/eirini-privileged"
+                        ]
+                      }
+                    },
+                    "sni": "outbound_.8080_._.s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local"
+                  }
+                }
+              },
+```
+1. A listener is added for the mapped app host name for both http and https variants.
+   The listener translates the virtual service configuration into envoy configuration. 
+   A route entry is added so that the ingress envoy knows how a host name is mapped to a service name.
+   Request headers are added that will be forwarded to the cf app.
+```json
+              {
+                "domains": [
+                  "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com",
+                  "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80"
+                ],
+                "name": "test-app-b.cf.cf4k8s.istio.shoot.canary.k8s-hana.ondemand.com:80",
+                "routes": [
+                  {
+                    "decorator": {
+                      "operation": "s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local:8080/*"
+                    },
+                    "match": {
+                      "prefix": "/"
+                    },
+                    "metadata": {
+                      "filter_metadata": {
+                        "istio": {
+                          "config": "/apis/networking/v1alpha3/namespaces/cf-workloads/virtual-service/vs-655ad2c2a8644d313a4105e611888b8b9b1762e579a2719e26827f5d9c1887ab"
+                        }
+                      }
+                    },
+                    "request_headers_to_add": [
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-App-Id",
+                          "value": "673ab4f3-101c-41a6-b1e3-aca13da1dd45"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-App-Process-Type",
+                          "value": "web"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-Organization-Id",
+                          "value": "e9aab7d8-298f-4aa7-9a77-46a721a36197"
+                        }
+                      },
+                      {
+                        "append": false,
+                        "header": {
+                          "key": "CF-Space-Id",
+                          "value": "e7bb5fa9-9496-4179-b244-806b268a8c64"
+                        }
+                      }
+                    ],
+                    "route": {
+                      "cluster": "outbound|8080||s-833a86e8-414f-4ac7-882b-6bc0c3c40366.cf-workloads.svc.cluster.local",
+                      "max_grpc_timeout": "0s",
+                      "retry_policy": {
+                        "host_selection_retry_max_attempts": "5",
+                        "num_retries": 2,
+                        "retriable_status_codes": [
+                          503
+                        ],
+                        "retry_host_predicate": [
+                          {
+                            "name": "envoy.retry_host_predicates.previous_hosts"
+                          }
+                        ],
+                        "retry_on": "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes"
+                      },
+                      "timeout": "0s"
+                    },
+                    (...)
+                  }
+                ]
+              },
+```
+
+App Sidecar Envoy
+
+1. When the sidecar gets injected, iptables rules are added that will capture all inbound traffic and forward it to 0.0.0.0:15006
+1. Another rule captures all outbound traffic and forwards it to 0.0.0.0:15001
+1. Envoy is started with uid and gid 1337 and an iptables rule is established that skips traffic capture for that user. This way an endless loop
+is prevented.
+
+```bash
+-A PREROUTING -p tcp -j ISTIO_INBOUND                             # Capture all inbound traffic to istio_inbound chain
+-A OUTPUT -p tcp -j ISTIO_OUTPUT                                  # Capture all outbound traffic to istio_outbound chain
+-A ISTIO_INBOUND -p tcp -m tcp --dport 22 -j RETURN               # Envoy does not capture SSH connections
+-A ISTIO_INBOUND -p tcp -m tcp --dport 15020 -j RETURN            # Exception for prometheus telemetry
+-A ISTIO_INBOUND -p tcp -j ISTIO_IN_REDIRECT                      # All other inbound traffic gets redirected to envoy
+-A ISTIO_IN_REDIRECT -p tcp -j REDIRECT --to-ports 15006          # Envoy receives incoming traffic on port 15006
+-A ISTIO_OUTPUT -s 127.0.0.6/32 -o lo -j RETURN                   # Don't capture from 6 is the magical number for inbound: 15006, 127.0.0.6, ::6
+-A ISTIO_OUTPUT ! -d 127.0.0.1/32 -o lo -j ISTIO_IN_REDIRECT      # But do capture non-local outbound connections from loopback
+-A ISTIO_OUTPUT -m owner --uid-owner 1337 -j RETURN               # Exception for envoy itself...
+-A ISTIO_OUTPUT -m owner --gid-owner 1337 -j RETURN               # ... this will prevent envoy from capturing its own traffic
+-A ISTIO_OUTPUT -d 127.0.0.1/32 -j RETURN                         # Don't capture connections to localhost (RETURN = leave chain)
+-A ISTIO_OUTPUT -j ISTIO_REDIRECT                                 # All other outbound traffic gets redirected to envoy
+-A ISTIO_REDIRECT -p tcp -j REDIRECT --to-ports 15001             # Envoy receives outgoing traffic on port 15001
+```
+
+todo: how traffic is forwarded from sidecar to app container
+
+
+### Push Another App
+### Map Additional Route
+
 
 ### Debugging
 

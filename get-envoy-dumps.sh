@@ -6,20 +6,14 @@
 # - after-push-b: contains the state after pushing another app
 #
 # The state are the envoy config of the app-sidecars and the istio-ingressgateway and all CF and Istio objects.
-#
-# Tip: Then comparing envoy dumps it helps to sort the json before comparing, e.g.:
-# diff -u <(jq -S . after-push-a/ingress.json) <(jq -S . after-push-b/ingress.json)
 
 set -euo pipefail
 
 NODE_APP_DIR="${NODE_APP_DIR:-$HOME/workspace/cf-for-k8s/tests/smoke/assets/test-node-app}"
-if [ -z "${DOMAIN:-}" ]; then
-    echo "Domain not set"
-    API_PREFIX="https://api."
-    RAW_DOMAIN="$(kubectl config view -o json | jq -r '.clusters[0].cluster.server')"
-    DOMAIN_PREFIX="${DOMAIN_PREFIX:-cf}"
-    DOMAIN="${DOMAIN_PREFIX}.${RAW_DOMAIN#"$API_PREFIX"}"
-fi
+API_PREFIX="https://api."
+RAW_DOMAIN="$(kubectl config view -o json | jq -r '.clusters[0].cluster.server')"
+DOMAIN_PREFIX="${DOMAIN_PREFIX:-cf}"
+DOMAIN="${DOMAIN_PREFIX}.${RAW_DOMAIN#"$API_PREFIX"}"
 
 echo "Using Domain: $DOMAIN"
 ADMIN_PWD="$(kubectl get secret var-cf-admin-password -n kubecf -o json | jq -r '.data.password' | base64 -d)"
@@ -48,14 +42,14 @@ function dump_envoy() {
     kubectl port-forward -n "$NAMESPACE" "$NAME" 15000:15000 &
     PID=$!
     sleep 1
-    curl -so "$TARGET" http://localhost:15000/config_dump
+    curl -s http://localhost:15000/config_dump | jq -S . > "$TARGET"
     kill $PID
 }
 
 # Inital dump
 INGRESS_POD_NAME=$(kubectl get pod -n istio-system -l app=istio-ingressgateway -o name | head -n 1)
 
-mkdir -p initial
+mkdir -p examples/initial
 dump_envoy istio-system "$INGRESS_POD_NAME" ./examples/initial/ingress.json
 kubectl get "$ISTIO_RESOURCES" -A -o yaml > ./examples/initial/istio.yaml
 kubectl get "$CF_RESOURCES" -A -o yaml > ./examples/initial/cf.yaml
@@ -67,7 +61,7 @@ push_app a
 GUID_A="$(cf app --guid test-app-a)"
 POD_NAME_A=$(kubectl get pods -n cf-workloads -l "cloudfoundry.org/app_guid=$GUID_A" -o name)
 
-mkdir -p after-push-a
+mkdir -p examples/after-push-a
 dump_envoy cf-workloads "$POD_NAME_A" ./examples/after-push-a/pod_a.json
 dump_envoy istio-system "$INGRESS_POD_NAME" ./examples/after-push-a/ingress.json
 kubectl get "$ISTIO_RESOURCES" -A -o yaml > ./examples/after-push-a/istio.yaml
@@ -80,12 +74,22 @@ push_app b
 GUID_B="$(cf app --guid test-app-b)"
 POD_NAME_B=$(kubectl get pods -n cf-workloads -l "cloudfoundry.org/app_guid=$GUID_B" -o name)
 
-mkdir -p after-push-b
+mkdir -p examples/after-push-b
 dump_envoy cf-workloads "$POD_NAME_A" ./examples/after-push-b/pod_a.json
 dump_envoy cf-workloads "$POD_NAME_B" ./examples/after-push-b/pod_b.json
 dump_envoy istio-system "$INGRESS_POD_NAME" ./examples/after-push-b/ingress.json
 kubectl get "$ISTIO_RESOURCES" -A -o yaml > ./examples/after-push-b/istio.yaml
 kubectl get "$CF_RESOURCES" -A -o yaml > ./examples/after-push-b/cf.yaml
+
+# Add another route to app b
+cf map-route test-app-b "${DOMAIN}" --hostname test-app-b1
+
+mkdir -p examples/after-map-route-b
+dump_envoy cf-workloads "$POD_NAME_A" ./examples/after-map-route-b/pod_a.json
+dump_envoy cf-workloads "$POD_NAME_B" ./examples/after-map-route-b/pod_b.json
+dump_envoy istio-system "$INGRESS_POD_NAME" ./examples/after-map-route-b/ingress.json
+kubectl get "$ISTIO_RESOURCES" -A -o yaml > ./examples/after-map-route-b/istio.yaml
+kubectl get "$CF_RESOURCES" -A -o yaml > ./examples/after-map-route-b/cf.yaml
 
 cf delete-org -f test-a
 cf delete-org -f test-b
